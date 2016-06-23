@@ -2,6 +2,11 @@
 
 > Echarts for vue.js 
 
+Demo [demo]
+
+[demo]: <https://echart-vue.herokuapp.com/>
+
+
 ## Build Setup
 
 ``` bash
