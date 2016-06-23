@@ -10,7 +10,23 @@
 import echarts from 'echarts'
 
 export default {
-  props:["options","classname"],
+  props: {
+   options:{
+    type:Object,
+    required:true,
+    twoWay: true,
+    validator: function (value) {
+      return typeof value === 'object'
+    }
+   },
+   classname:{
+      type: String,
+      default: function () {
+        console.log("Classnames not found in props")
+        return "___charts___";
+      }
+   }
+  },
   data () {
     return {
       _vue_charts:null
@@ -48,3 +64,8 @@ export default {
   }
 }
 </script>
+<style>
+  .___charts___{
+    height: 400px;
+  }
+</style>
