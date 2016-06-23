@@ -5,7 +5,7 @@
   "author": "Abdullah Mara <zull.mara00@gmail.com>",
   "private": false,
   "scripts": {
-    "start": "node api",
+    "start": "npm run build && node api",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "test": "",
