@@ -6,6 +6,7 @@
 
     npm i -S v-echarts
 
+[Demo](https://echart-vue.herokuapp.com/)
 
 ##Use
 	// Vue Template
@@ -83,7 +84,11 @@
 
 ##Options 
 
-Option object  referenced from [Echarts Library](https://ecomfe.github.io/echarts/doc/doc-en.html)
+
+Option object is required so It can be referenced from [Echarts Library](https://ecomfe.github.io/echarts/doc/doc-en.html)
+
+##Classname
+Default classname `___charts___` this property `height: 400px;`
 
 ## Build Setup Development
 
