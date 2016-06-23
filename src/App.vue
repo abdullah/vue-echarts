@@ -1,64 +1,127 @@
 <template>
-  <div id="app">
-    <img class="logo" src="./assets/logo.png">
-    <hello></hello>
-    <p>
-      Welcome to your Vue.js app!
-    </p>
-    <p>
-      To get a better understanding of how this boilerplate works, check out
-      <a href="http://vuejs-templates.github.io/webpack" target="_blank">its documentation</a>.
-      It is also recommended to go through the docs for
-      <a href="http://webpack.github.io/" target="_blank">Webpack</a> and
-      <a href="http://vuejs.github.io/vue-loader/" target="_blank">vue-loader</a>.
-      If you have any issues with the setup, please file an issue at this boilerplate's
-      <a href="https://github.com/vuejs-templates/webpack" target="_blank">repository</a>.
-    </p>
-    <p>
-      You may also want to checkout
-      <a href="https://github.com/vuejs/vue-router/" target="_blank">vue-router</a> for routing and
-      <a href="https://github.com/vuejs/vuex/" target="_blank">vuex</a> for state management.
-    </p>
-  </div>
+    <div class="container">
+      
+      <div>
+        <label for=""><span>Radius one</span><input type="text" v-model="radiusone"></label>
+        <label for=""><span>Radius two</span><input type="text" v-model="radiustwo"></label>
+        <label for=""><span>node</span><input type="text" v-model="node"></label>
+        <label for=""><span>php</span><input type="text" v-model="php"></label>
+        <label for=""><span>bash</span><input type="text" v-model="bash"></label>
+        <label for=""><span>java</span><input type="text" v-model="java"></label>
+        <label for=""><span>other</span><input type="text" v-model="other"></label>
+      </div>
+      
+      <Echartsv classname="chart-style" :options.sync="options"></Echartsv>
+
+    </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Echartsv from './components/Echartsv';
+
+import _ from 'lodash'
 
 export default {
+   data () {
+    return {
+      radiusone:50,
+      radiustwo:70,
+      node:100,
+      php:100,
+      bash:100,
+      java:100,
+      other:100,
+    }
+  },
+  computed:{
+    'options':function () {
+      var radiusone = this.radiusone+'%',
+          radiustwo = this.radiustwo+'%',
+          node = this.node,
+          php = this.php,
+          bash = this.bash,
+          java = this.java,
+          other = this.other;
+      return {
+          tooltip: {
+              trigger: 'item',
+              formatter: "{a} <br /> {b}: {c} ({d}%)"
+          },
+          legend: {
+              /*
+                TODO : Change show key 
+              */
+              show:false,
+              orient: 'vertical',
+              x: 'cenge',
+              data:['nodejs','php','bash','java','other']
+          },
+          series: [
+              {
+                  name:'Game Of Language',
+                  type:'pie',
+                  radius: [radiusone, radiustwo],
+                  avoidLabelOverlap: false,
+                  label: {
+                      normal: {
+                          show: false,
+                          position: 'center'
+                      },
+                      emphasis: {
+                          show: true,
+                          textStyle: {
+                              fontSize: '30',
+                              fontWeight: 'bold'
+                          }
+                      }
+                  },
+                  labelLine: {
+                      normal: {
+                          show: false
+                      }
+                  },
+                  data:[
+                      {value:node, name:'nodejs'},
+                      {value:php, name:'php'},
+                      {value:bash, name:'bash'},
+                      {value:java, name:'java'},
+                      {value:other, name:'other'}
+                  ]
+              }
+          ]
+      }
+    }
+  },
   components: {
-    Hello
+    Echartsv
   }
 }
 </script>
 
-<style>
-html {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-#app {
-  color: #2c3e50;
-  margin-top: -100px;
-  max-width: 600px;
-  font-family: Source Sans Pro, Helvetica, sans-serif;
-  text-align: center;
-}
-
-#app a {
-  color: #42b983;
-  text-decoration: none;
-}
-
-.logo {
-  width: 100px;
-  height: 100px
-}
+<style lang="scss">
+  .container{
+    max-width: 600px;
+    margin: auto;
+  }
+  .chart-style{
+    width: 600px;
+    height: 300px;
+    float: none;
+    clear: both;
+  }
+  label{
+    display: block;
+    width: 50%;
+    float: left;
+    margin-bottom: 10px;
+    span{
+      min-width: 100px;
+      display: inline-block;
+      text-transform: capitalize;
+      font-family: Arial;
+    }
+    input{
+      margin-left: 10px;
+    }
+  }
 </style>
