@@ -1,8 +1,91 @@
 # vue-echarts
 
-> Echarts for vue.js 
+> ECharts Components for Vue.js 
 
-## Build Setup
+## İnstallation 
+
+    npm i -S v-echarts
+
+
+##Use
+	// Vue Template
+	
+	<Echartsv classname="chart-style" :options.sync="options"></Echartsv>
+ 
+    //JS
+    import Echartsv from './components/Echartsv';
+    
+    export default {
+       data () {
+        return {
+	         option = {
+			    tooltip: {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b}: {c} ({d}%)"
+			    },
+			    legend: {
+			        /*
+			            TODO : Change show key 
+			        */
+			        show:false,
+			        orient: 'vertical',
+			        x: 'left',
+			        data:['data-one','data-two']
+			    },
+			    series: [
+			        {
+			            name:'chart-name',
+			            type:'pie',
+			            radius: ['50%', '70%'],
+			            avoidLabelOverlap: false,
+			            label: {
+			                normal: {
+			                    show: false,
+			                    position: 'center'
+			                },
+			                emphasis: {
+			                    show: true,
+			                    textStyle: {
+			                        fontSize: '30',
+			                        fontWeight: 'bold'
+			                    }
+			                }
+			            },
+			            labelLine: {
+			                normal: {
+			                    show: false
+			                }
+			            },
+			            data:[
+			                {value:335, name:'data-one'},
+			                {value:310, name:'data-two'},
+			            ]
+			        }
+			    ]
+			}
+        }
+      },
+      //Register Component
+      components: {
+        Echartsv
+      }
+    }
+   
+    
+	 //css
+     .chart-style{
+       width: 600px;
+       height: 300px;
+       float: none;
+       clear: both;
+     }
+
+
+##Options 
+
+Option object  referenced from [Echarts Library](https://ecomfe.github.io/echarts/doc/doc-en.html)
+
+## Build Setup Development
 
 ``` bash
 # install dependencies
@@ -14,14 +97,6 @@ npm run dev
 # build for production with minification
 npm run build
 
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
